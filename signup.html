@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Link to Font Awesome CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
   <style>
     /* Custom CSS for the gradient button */
     .btn-gradient-blue-violet {
@@ -36,6 +38,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="centered-form bg-primary"> <!-- Added "bg-primary" class here -->
     <div class="card">
@@ -43,23 +46,43 @@
         <h4 class="card-title">Sign Up</h4>
         <form>
           <div class="form-group">
-            <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-user"></i></span>
+              </div>
+              <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="email" class="form-control" id="email" placeholder="Email" required>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+              </div>
+              <input type="email" class="form-control" id="email" placeholder="Email" required>
+            </div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+              </div>
+              <input type="password" class="form-control" id="password" placeholder="Password" required>
+            </div>
           </div>
           <div class="form-group">
-            <label for="birthday">Birthday</label>
+            <label for="birthday"><i class="fas fa-calendar-alt"></i> Birthday</label>
             <input type="date" class="form-control" id="birthday" required>
           </div>
           <div class="form-group">
-            <label for="gender">Gender</label>
+            <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
             <select class="form-control" id="gender" required>
               <option value="" disabled selected>Select your gender</option>
               <option value="male">Male</option>
@@ -71,10 +94,11 @@
             <input type="checkbox" class="form-check-input" id="termsCheckbox" required>
             <label class="form-check-label" for="termsCheckbox">I agree to the Terms & Conditions</label>
           </div>
-          <button type="submit" class="btn btn-gradient-blue-violet btn-block">Sign Up</button>
+          <button type="submit" class="btn btn-gradient-blue-violet btn-warning btn-block">Sign Up</button>
         </form>
       </div>
     </div>
   </div>
 </body>
+
 </html>
