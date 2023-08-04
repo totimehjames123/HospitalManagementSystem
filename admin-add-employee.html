@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Employee</title>
+  <!-- Link to Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Link to Font Awesome CSS -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Custom CSS for the gradient button */
+    .btn-gradient-blue-violet {
+      background-image: linear-gradient(to right, #3b82f6, #8b5cf6);
+      color: #fff;
+      border-color: #3b82f6;
+    }
+
+    .btn-gradient-blue-violet:hover {
+      background-image: linear-gradient(to right, #3b82f6, #8b5cf6);
+      color: #fff;
+      border-color: #3b82f6;
+    }
+
+    /* Custom CSS to center the form */
+    .centered-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Custom CSS for the grid layout */
+    .form-columns {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .centered-form .card {
+      width: 100%;
+      max-width: 80%; /* Adjust the width as needed */
+      border-radius: 50px;
+    }
+
+
+    .btn-gradient-blue-violet {
+      background-image: linear-gradient(to right, #3b82f6, #8b5cf6);
+      color: #fff;
+      border-color: #3b82f6;
+      cursor: pointer;
+    }
+
+    /* Hide default file input appearance */
+    .file-input {
+      display: none;
+    }
+
+    /* Style the custom file input button */
+    .file-input-label {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 5px;
+      /* background-image: linear-gradient(to right, #3b82f6, #8b5cf6); */
+      /* color: #fff; */
+      color: gray;
+      cursor: pointer;
+    }
+
+    /* Add hover effect to the custom file input button (optional) */
+    .file-input-label:hover {
+      /* background-image: linear-gradient(to right, black, #8b5cf6); */
+      background: black;
+      color: white;
+    }
+
+    
+
+  </style>
+</head>
+
+<body>
+  <div class="centered-form bg-primary">
+    <div class="card p-3">
+      <div class="card-body">
+        <h4 class="card-title">Add Employee</h4>
+        <form>
+          <span class="form-columns">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-user"></i></span>
+                </div>
+                <input type="text" class="form-control" id="username" placeholder="Employee Name" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+                </div>
+                <input type="text" class="form-control" id="password" placeholder="Employee ID" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
+                </div>
+                <input type="email" class="form-control" id="email" placeholder="Email" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
+                </div>
+                <select class="form-control" id="country" required>
+                  <option value="" disabled selected>Select your Country</option>
+              </select>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+                </div>
+                <select class="form-control" id="gender" required>
+                  <option value="" disabled selected>Select your Job Tittle</option>
+                  <option value="male">Doctors</option>
+                  <option value="female">Nurse</option>
+                  <option value="other">Pharmacist</option>
+                  <option value="male">Anesthesiologist</option>
+                  <option value="male">Occupational Therapist</option>
+                  <option value="male">Computer Specialist</option>
+                  <option value="male">Respiratory Therapist</option>
+                  <option value="male">Nutritionist / Dietitian</option>
+                  <option value="male">Biomedical Engineer</option>
+                  <option value="male">Driver</option>
+                  <option value="male">Cleaner</option>
+                  <option value="male">Messanger</option>
+                  <option value="male">Security Officer</option>
+                  <option value="male">Patient Care Technician</option>
+                  <option value="male">Hospital Administrator</option>
+                  <option value="male">Phlebotomist</option>
+                  <option value="male">Surgeon</option>
+                  <option value="">Infection Control Specialist</option>
+                  <option value="male">Technical Consultant</option>
+                  <option value="male">IT Support Staff</option>
+                  <option value="male">Patient Care Technicians</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+                </div>
+                <select class="form-control" id="work-status" required>
+                  <option value="" disabled selected>Select Work Status</option>
+                  <option value="full-time">Full-Time Worker</option>
+                  <option value="part-time">Part-Time Worker</option>
+                  <option value="contract">Contract Worker</option>
+                  <option value="contract">Internship/Attachment</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="birthday">Birthday</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+                </div>
+                <input type="date" class="form-control" id="birthday" required>
+              </div>
+            </div>
+
+            <!-- Add Image Upload Field -->
+
+            <div class="form-group">
+              <label for="profile-image">Profile Picture</label>
+              <label for="profile-image" class="file-input-label w-100 border">
+                <i class="fas fa-image mr-3"></i> Choose an image
+                <input type="file" class="form-control file-input" id="profile-image" accept="image/*">
+              </label>
+            </div>
+            
+            <div class="form-group">
+              <label for="tertiary-completed">Tertiary Education Completed</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-graduation-cap"></i></span>
+                </div>
+                <input type="text" class="form-control" id="tertiary-completed" placeholder="Institution Name" required>
+              </div>
+            </div>
+            
+          </span>
+
+          <div class="text-center">
+              <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-gradient-blue-violet text-white w-25">Add Employee</button>
+              <p class="mt-3 text-center">Update an Employee? <a href="login.html">Login here</a></p>
+          </div>         
+        </form>
+      
+      </div>
+      
+    </div>
+    
+  </div>
+
+  <!-- Fetch and populate country list -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+  <script>
+    fetch('https://restcountries.com/v3.1/all')
+      .then(response => response.json())
+      .then(data => {
+        const countrySelect = document.getElementById('country');
+
+        data.forEach(country => {
+          const option = document.createElement('option');
+          option.value = country.name.common;
+
+          // Add a class for the flag based on the country's ISO code
+          const isoCode = country.cca2.toLowerCase(); // Replace with the correct property
+          option.className = `flag-icon flag-icon-${isoCode}`;
+
+          option.text = country.name.common;
+          countrySelect.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching countries:', error));
+</script>
+</body>
+
+</html>
