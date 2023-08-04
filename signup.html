@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +13,8 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
   <style>
     /* Custom CSS for the gradient button */
     .btn-gradient-blue-violet {
@@ -37,6 +41,29 @@
       width: 100%;
       max-width: 400px;
     }
+
+    /* Hide default file input appearance */
+    .file-input {
+      display: none;
+    }
+
+    /* Style the custom file input button */
+    .file-input-label {
+      display: inline-block;
+      padding: 8px 15px;
+      border-radius: 5px;
+      /* background-image: linear-gradient(to right, #3b82f6, #8b5cf6); */
+      /* color: #fff; */
+      color: gray;
+      cursor: pointer;
+    }
+
+    /* Add hover effect to the custom file input button (optional) */
+    .file-input-label:hover {
+      /* background-image: linear-gradient(to right, black, #8b5cf6); */
+      background: black;
+      color: white;
+    }
   </style>
 </head>
 
@@ -45,7 +72,7 @@
     <div class="card p-3" style="border-radius: 50px;">
       <div class="card-body">
         <h4 class="card-title">Sign Up</h4>
-        <form>
+        <form id="signup-form" enctype="multipart/form-data">
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
@@ -70,19 +97,43 @@
               <input type="password" class="form-control" id="password" placeholder="Password" required>
             </div>
           </div>
+
           <div class="form-group">
-            <label for="birthday"><i class="fas fa-calendar-alt"></i> Birthday</label>
-            <input type="date" class="form-control" id="birthday" required>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+              </div>
+              <select class="form-control" id="gender" required>
+                <option value="" disabled selected>Select your gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+            </div>            
           </div>
+
           <div class="form-group">
-            <label for="gender"><i class="fas fa-venus-mars"></i> Gender</label>
-            <select class="form-control" id="gender" required>
-              <option value="" disabled selected>Select your gender</option>
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="other">Other</option>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
+              </div>
+              <select class="form-control" id="country" required>
+                <option value="" disabled selected>Select your Country</option>
             </select>
+            </div>
           </div>
+
+
+
+          <!-- Add Image Upload Field -->
+
+          <div class="form-group">
+            <label for="profile-image" class="file-input-label w-100 border">
+              <i class="fas fa-image mr-3"></i> Add a profile picture
+              <input type="file" class="form-control file-input" id="profile-image" accept="image/*">
+            </label>
+          </div>
+          
           <div class="text-center">
             <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Signup</button>
           </div>
@@ -91,6 +142,31 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Fetch and populate country list -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+  <script>
+    fetch('https://restcountries.com/v3.1/all')
+      .then(response => response.json())
+      .then(data => {
+        const countrySelect = document.getElementById('country');
+
+        data.forEach(country => {
+          const option = document.createElement('option');
+          option.value = country.name.common;
+
+          // Add a class for the flag based on the country's ISO code
+          const isoCode = country.cca2.toLowerCase(); // Replace with the correct property
+          option.className = `flag-icon flag-icon-${isoCode}`;
+
+          option.text = country.name.common;
+          countrySelect.appendChild(option);
+        });
+      })
+      .catch(error => console.error('Error fetching countries:', error));
+
+  </script>
 </body>
 
 </html>
