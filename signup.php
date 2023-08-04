@@ -1,4 +1,64 @@
+<?php
+include 'connect.php';
 
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $newPassword = $_POST['newPassword'];
+  $confirmPassword = $_POST['confirmNewPassword'];
+  $gender = $_POST['gender'];
+  $country = $_POST['country'];
+  $profilePicture = isset($_POST['profilePicture']) ? $_POST['profilePicture'] : 'users.png';
+
+  //Check if passwords are the same
+  $password = "";
+  if ($newPassword === $confirmPassword){
+    $password = $connection->real_escape_string($newPassword);
+
+    // //Check if email already exists
+    $email = $connection->real_escape_string($email);
+    try{
+      $check_email_query = "SELECT * FROM users WHERE email = '$email'";
+      $result = $connection->query($check_email_query);
+
+      if ($result->num_rows > 0) {
+          echo "User with this email already exists.";
+      }
+      else{
+        try{
+          // Escape user input to prevent SQL injection
+          $username = $connection->real_escape_string($username);
+          $email = $connection->real_escape_string($email);
+          $password = $connection->real_escape_string($password);
+          $gender = $connection->real_escape_string($gender);
+          $country = $connection->real_escape_string($country);
+          $profilePicture = $connection->real_escape_string($profilePicture);
+      
+          $insert_query = "INSERT INTO users (username, email, password, gender, country, profilePicture) 
+                          VALUES ('$username', '$email', '$password', '$gender', '$country', '$profilePicture')";
+      
+          if ($connection->query($insert_query) === TRUE) {
+              echo "User registration successful.";
+          } else {
+              echo "Error: " . $insert_query . "<br>" . $connection->error;
+          }
+        }
+        catch (Exception $e){
+          echo "An error occurred, Try again!";
+        }
+      }
+    }
+    catch (Exception $e) {
+      echo "An error occured!";
+    }
+    }
+    else {
+      echo "Passwords dont match";
+    }
+
+  $connection->close();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -68,17 +128,17 @@
 </head>
 
 <body>
-  <div class="centered-form bg-primary"> <!-- Added "bg-primary" class here -->
-    <div class="card p-3" style="border-radius: 50px;">
+  <div class="centered-form bg-primary">
+    <div class="card p-2" style="border-radius: 50px;">
       <div class="card-body">
         <h4 class="card-title">Sign Up</h4>
-        <form id="signup-form" enctype="multipart/form-data">
+        <form id="signup-form" enctype="multipart/form-data" action="signup.php" method="post">
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-user"></i></span>
               </div>
-              <input type="text" class="form-control" id="username" placeholder="Username" required>
+              <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
             </div>
           </div>
           <div class="form-group">
@@ -86,7 +146,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
               </div>
-              <input type="email" class="form-control" id="email" placeholder="Email" required>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
             </div>
           </div>
           <div class="form-group">
@@ -94,7 +154,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
               </div>
-              <input type="password" class="form-control" id="password" placeholder="Password" required>
+              <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required>
             </div>
           </div>
 
@@ -103,7 +163,16 @@
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
               </div>
-              <select class="form-control" id="gender" required>
+              <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+              </div>
+              <select class="form-control" id="gender" name="gender" required>
                 <option value="" disabled selected>Select your gender</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
@@ -117,9 +186,9 @@
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
               </div>
-              <select class="form-control" id="country" required>
+              <select class="form-control" id="country" name="country" required>
                 <option value="" disabled selected>Select your Country</option>
-            </select>
+              </select>
             </div>
           </div>
 
@@ -130,12 +199,12 @@
           <div class="form-group">
             <label for="profile-image" class="file-input-label w-100 border">
               <i class="fas fa-image mr-3"></i> Add a profile picture
-              <input type="file" class="form-control file-input" id="profile-image" accept="image/*">
+              <input type="file" class="form-control file-input" id="profile-image" name="profilePicture" accept="image/*">
             </label>
           </div>
           
           <div class="text-center">
-            <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Signup</button>
+            <button style="border-radius: 25px; height: 45px;" name="submit" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Signup</button>
           </div>
           <p class="mt-3 text-center">Already have an account? <a href="login.html">Login here</a></p>
         </form>
