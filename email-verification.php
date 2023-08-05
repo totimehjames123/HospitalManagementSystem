@@ -8,6 +8,9 @@
   if ($_SERVER["REQUEST_METHOD"] === "POST"){
     if ($_POST["emailVerificationCode"] == $_SESSION['verificationCode']){
       echo "same";
+      
+      
+
     }
     else {
       echo "not same";

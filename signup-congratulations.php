@@ -41,15 +41,20 @@
   </style>
 </head>
 <body>
-  <div class="centered-form bg-primary ">
-    <div class="card border-none" style="border-radius: 50px;">
+  <div class="centered-form">
+    <div class="card border-0" style="border-radius: 50px;">
       <div class="card-body">
+        <div class="text-center p-4">
+          <i class="fa fa-check-circle fa-3x text-success"></i>
+        </div>
+        <h2 class="text-center">Congratulations!!!</h2>
         <div class="text-center">
-          <img src="logo.png" alt="lgog" width="80" height="80" class="pb-2">
-          </div>
-        <h6 class="card-title p-3 ">Congratulations!!! You've successfully created an account...</h6>
-        
-    </div>
+          <small class="card-title p-3 text-center">You've successfully created an account with us.
+             Click on the button below to process using this system.</small>
+          <br>
+          <a href="#" class="btn btn-outline-success mt-4">Proceed</a>
+        </div>
+     </div>
    </div>
  </div>
 </body>
