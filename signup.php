@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -6,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $email = $_POST['email'];
   $gender = $_POST['gender'];
   $country = $_POST['country'];
-  $profilePicture = isset($_POST['profilePicture']) ? $_POST['profilePicture'] : 'users.png';
+  $profilePicture = "";
 
     // //Check if email already exists
     $email = $connection->real_escape_string($email);
@@ -23,6 +24,45 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         else{
           try{
+
+            $uploadDir = "uploads/"; // Directory where the images will be stored
+            $allowedExtensions = ["jpg", "jpeg", "png", "gif"]; // Allowed image file extensions
+
+            // Check if the profilePictureInput field has a value (i.e., a file is uploaded)
+            if (isset($_FILES["profilePicture"]["name"]) && $_FILES["profilePicture"]["name"] !== ""){
+              
+                // File is uploaded, proceed with the file upload process
+                $fileName = $_FILES["profilePicture"]["name"];
+                $fileTmpName = $_FILES["profilePicture"]["tmp_name"];
+                $fileType = $_FILES["profilePicture"]["type"];
+                $fileSize = $_FILES["profilePicture"]["size"];
+                $fileError = $_FILES["profilePicture"]["error"];
+
+                // Check if the uploaded file is an image
+                $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+                if (!in_array($fileExtension, $allowedExtensions)) {
+                    echo "Error: Only JPG, JPEG, PNG, and GIF files are allowed.";
+                    exit();
+                }
+
+                // Check if there was no upload error
+                if ($fileError !== 0) {
+                    echo "Error uploading the file. Please try again.";
+                    exit();
+                }
+
+                // Generate a unique filename to avoid overwriting existing files
+                $newFileName = uniqid() . "." . $fileExtension;
+
+                if (move_uploaded_file($fileTmpName, $uploadDir . $newFileName)){
+                  $profilePicture = $newFileName;
+                }
+            }
+            elseif (!empty($_POST["defaultProfilePicture"])) {
+              $profilePicture = $_POST["defaultProfilePicture"];
+              echo $profilePicture;
+            }
+
             // Escape user input to prevent SQL injection
             $username = $connection->real_escape_string($username);
             $email = $connection->real_escape_string($email);
@@ -37,6 +77,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["gender"] = $gender;
             $_SESSION["country"] = $country;
             $_SESSION["profilePicture"] = $profilePicture;
+
+            // header("Location: email-verification.php");
           }
           catch (Exception $e){
             echo "An error occurred, Try again!";
@@ -142,23 +184,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
             </div>
           </div>
-          <!-- <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
-              </div>
-              <input type="password" class="form-control" id="newPassword" name="newPassword" placeholder="Password" required>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
-              </div>
-              <input type="password" class="form-control" id="confirmNewPassword" name="confirmNewPassword" placeholder="Confirm New Password" required>
-            </div>
-          </div> -->
 
           <div class="form-group">
             <div class="input-group">
@@ -195,6 +220,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
               <input type="file" class="form-control file-input" id="profile-image" name="profilePicture" accept="image/*">
             </label>
           </div>
+
+           <!-- Hidden field to store the default image filename when no file is uploaded -->
+          <input type="hidden" name="defaultProfilePicture" value="user.png">
           
           <div class="text-center">
             <button style="border-radius: 25px; height: 45px;" name="submit" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Next</button>

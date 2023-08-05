@@ -1,3 +1,12 @@
+<?php
+  include 'connect.php';
+
+  $verificationCode = rand(100000, 900000);
+  $_SESSION['verificationCode'] = $verificationCode;
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +57,7 @@
           <img src="logo.png" alt="lgog" width="80" height="80" class="pb-2">
         </div>
         <h4 class="card-title ">Email verification</h4>
-        <small class="">We've sent you a 6 digit verification code through the email you sent us...</small> 
+        <small class="">We've sent you a 6 digit verification code through your email.</small> 
         <p class="mb-3"></p>
         <form>
           <div class="form-group">
@@ -64,7 +73,7 @@
             <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Verify</button>
           </div>
         </form>
-        
+        <p class="mt-3 text-center">Haven't recieved any code?<a href="email-verification.php"> Resend</a></p>
       </div>
     </div>
   </div>
