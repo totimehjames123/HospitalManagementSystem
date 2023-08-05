@@ -69,8 +69,8 @@
             <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Login</button>
           </div>
         </form>
-        <p class="mt-3 text-center"><a href="forget-password.html">Forgot Password?</a></p>
-        <p class="mt-3 text-center">Don't have an account? <a href="signup.html">Sign up here</a></p>
+        <p class="mt-3 text-center"><a href="forget-password.php">Forgot Password?</a></p>
+        <p class="mt-3 text-center">Don't have an account? <a href="signup.php">Sign up here</a></p>
       </div>
     </div>
   </div>

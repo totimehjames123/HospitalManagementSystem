@@ -1,5 +1,11 @@
 <?php
   session_start();
+  
+  if (!isset($_SESSION['email'])) {
+    header('Location: login.php');
+    exit();
+  }
+
   include 'connect.php';
 
   echo $_SESSION['verificationCode'];
@@ -8,8 +14,7 @@
   if ($_SERVER["REQUEST_METHOD"] === "POST"){
     if ($_POST["emailVerificationCode"] == $_SESSION['verificationCode']){
       echo "same";
-      
-      
+      header("Location: user-set-password.php");
 
     }
     else {
