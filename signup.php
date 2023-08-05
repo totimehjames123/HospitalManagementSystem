@@ -78,7 +78,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["country"] = $country;
             $_SESSION["profilePicture"] = $profilePicture;
 
-            // header("Location: email-verification.php");
+            
+            $verificationCode = rand(100000, 900000);
+            $_SESSION['verificationCode'] = $verificationCode;
+            header("Location: email-verification.php");
           }
           catch (Exception $e){
             echo "An error occurred, Try again!";

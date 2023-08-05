@@ -1,9 +1,19 @@
 <?php
+  session_start();
   include 'connect.php';
 
-  $verificationCode = rand(100000, 900000);
-  $_SESSION['verificationCode'] = $verificationCode;
+  echo $_SESSION['verificationCode'];
+  
 
+  if ($_SERVER["REQUEST_METHOD"] === "POST"){
+    if ($_POST["emailVerificationCode"] == $_SESSION['verificationCode']){
+      echo "same";
+    }
+    else {
+      echo "not same";
+
+    }
+  }
 
 ?>
 
@@ -59,13 +69,13 @@
         <h4 class="card-title ">Email verification</h4>
         <small class="">We've sent you a 6 digit verification code through your email.</small> 
         <p class="mb-3"></p>
-        <form>
+        <form action="email-verification.php" method="post">
           <div class="form-group">
             <div class="input-group" style="height: 45px;">
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
               </div>
-              <input style="height: 45px;" type="email" class="form-control btn-focus" id="email" placeholder="Enter verification code" required>
+              <input style="height: 45px;" type="number" class="form-control btn-focus" id="emailVerificationCode" name="emailVerificationCode" placeholder="Enter verification code" required>
             </div>
           </div>
           
