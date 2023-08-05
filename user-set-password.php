@@ -1,13 +1,18 @@
 <?php
   session_start();
   include "connect.php";
-  
 
+  if (!isset($_SESSION['email'])) {
+    header('Location: login.php');
+    exit();
+  }
+
+  $errorMessage = "";
+  
   try{
     if ($_SERVER["REQUEST_METHOD"] === "POST"){
       if ($_POST["newPassword"] === $_POST["confirmNewPassword"]){
   
-        
         // Retrieve user data from session variables
         $username = $_SESSION['username'];
         $email = $_SESSION['email'];
@@ -15,11 +20,6 @@
         $gender = $_SESSION['gender'];
         $country = $_SESSION['country'];
         $profilePicture = $_SESSION['profilePicture'];
-  
-        // Check for connection errors
-        if ($connection->connect_error) {
-            die("Connection failed: " . $connection->connect_error);
-        }
   
         // Prepare the SQL query with placeholders
         $sql = "INSERT INTO users (username, email, password, gender, country, profilePicture)
@@ -38,7 +38,7 @@
             exit();
         } else {
             // Handle the error if the insertion fails
-            echo "Error: " . $stmt->error;
+            $errorMessage = "Error: Failed to submit";
         }
   
         // Close the statement and connection
@@ -47,13 +47,13 @@
         
       }
       else{
-        echo "pass not match";
+        $errorMessage = "Passwords does not match!";
       }
     }
   
   }
   catch(Exception $e){
-    echo "error occured";
+    $errorMessage = "An error occured. Try again!" ;
   }
   
 
@@ -109,6 +109,11 @@
         </div>
         <h4 class="card-title ">Set a Password</h4>
         <form action="user-set-password.php" method="post">
+          <small class="text-danger">
+            <?php 
+              echo $errorMessage;
+            ?>
+          </small>
           <div class="form-group">
             <div class="input-group" style="height: 45px;">
               <div class="input-group-prepend">
@@ -130,7 +135,7 @@
           </div>
         </form>
         <p class="mt-3 text-center"><a href="forget-password.html">Forgot Password?</a></p>
-        <p class="mt-3 text-center">Don't have an account? <a href="signup.html">Sign up here</a></p>
+        <p class="mt-3 text-center">Already have an account? <a href="login.php">Login</a></p>
       </div>
     </div>
   </div>

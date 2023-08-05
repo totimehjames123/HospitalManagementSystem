@@ -1,3 +1,38 @@
+<?php
+session_start();
+
+include 'connect.php';
+
+$errorMessage = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    $email = $connection->real_escape_string($_POST["email"]);
+    $password = $_POST["password"]; // The user-entered plain password
+
+    $query = "SELECT * FROM users WHERE email = '$email'";
+
+    $result = mysqli_query($connection, $query);
+
+    if (mysqli_num_rows($result) > 0) {
+        $row = mysqli_fetch_assoc($result);
+        $hashedPassword = $row["password"]; // The hashed password retrieved from the database
+
+        // Verify the entered password against the stored hashed password
+        if (password_verify($password, $hashedPassword)) {
+            // Password is correct
+            $_SESSION["email"] = $email;
+            header("Location: index.php");
+        } else {
+            // Password is incorrect
+            $errorMessage = "Invalid email or password";
+        }
+    } else {
+        // No user found with the entered email
+        $errorMessage = "Invalid email or password";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,14 +82,17 @@
         <div class="text-center">
           <img src="logo.png" alt="lgog" width="80" height="80" class="pb-2">
         </div>
-        <h4 class="card-title ">Login</h4>
-        <form>
+        <h4 class="card-title">Login</h4>
+        <form action="login.php" method="POST">
+          <small class="text-danger">
+            <?php echo $errorMessage;?>
+          </small>
           <div class="form-group">
             <div class="input-group" style="height: 45px;">
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
               </div>
-              <input style="height: 45px;" type="email" class="form-control btn-focus" id="email" placeholder="Enter your email" required>
+              <input style="height: 45px;" type="email" class="form-control btn-focus" id="email" name="email" placeholder="Enter your email" required>
             </div>
           </div>
           <div class="form-group">
@@ -62,7 +100,7 @@
               <div class="input-group-prepend">
                 <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
               </div>
-              <input style="height: 45px;" type="password" class="form-control btn-focus" id="password" placeholder="Enter your password" required>
+              <input style="height: 45px;" type="password" class="form-control btn-focus" id="password" name="password" placeholder="Enter your password" required>
             </div>
           </div>
           <div class="text-center">

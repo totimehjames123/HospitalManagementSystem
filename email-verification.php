@@ -1,5 +1,7 @@
 <?php
   session_start();
+
+  $errorMessage = "";
   
   if (!isset($_SESSION['email'])) {
     header('Location: login.php');
@@ -13,13 +15,10 @@
 
   if ($_SERVER["REQUEST_METHOD"] === "POST"){
     if ($_POST["emailVerificationCode"] == $_SESSION['verificationCode']){
-      echo "same";
       header("Location: user-set-password.php");
-
     }
     else {
-      echo "not same";
-
+      $errorMessage = "Invalid code!";
     }
   }
 
@@ -78,6 +77,11 @@
         <small class="">We've sent you a 6 digit verification code through your email.</small> 
         <p class="mb-3"></p>
         <form action="email-verification.php" method="post">
+          <small class="text-danger">
+            <?php
+              echo $errorMessage;
+            ?>
+          </small>
           <div class="form-group">
             <div class="input-group" style="height: 45px;">
               <div class="input-group-prepend">
