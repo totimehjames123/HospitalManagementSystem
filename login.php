@@ -5,7 +5,8 @@ include 'connect.php';
 
 $errorMessage = "";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+try{
+  if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $connection->real_escape_string($_POST["email"]);
     $password = $_POST["password"]; // The user-entered plain password
 
@@ -31,6 +32,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errorMessage = "Invalid email or password";
     }
 }
+}
+catch(Exception $e){
+  $errorMessage = "An error occured. Try again!";
+}
+
 ?>
 
 <!DOCTYPE html>
