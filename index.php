@@ -149,11 +149,11 @@
       <div class="col-md-6 text-center">
         <!-- Your text here -->
         <h1>
-  <span class="" style="max-height: 90px">
-    <span>Number One Medical System In </span><br>
-    <span class="text-primary typing-text">Ghana.</span><br>
-  </span>
-</h1>
+          <span class="" style="max-height: 90px">
+            <span>Number One Medical System In </span><br>
+            <span class="text-primary typing-text">Ghana.</span><br>
+          </span>
+        </h1>
 
 
 
