@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Responsive Bootstrap Header</title>
+  <title>Ayao Medical Center</title>
   <!-- Add the Bootstrap CSS link -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
@@ -137,7 +137,7 @@
           <a href="#" class="btn bg-dark text-warning pl-4 pr-4" style="border-radius: 20px;">Premium</a>
         </div>
       </div>
-    </div>
+    </div>    
   </nav>
 
   <!-- MAIN BODY -->

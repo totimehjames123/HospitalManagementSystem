@@ -49,6 +49,30 @@ try{
         exit();
     }
 
+    $create_employee_table_query = "CREATE TABLE IF NOT EXISTS employees (
+        id INT(11) AUTO_INCREMENT PRIMARY KEY,
+        employeeId VARCHAR(255) UNIQUE NOT NULL,
+        employeePassword VARCHAR(255) NOT NULL,
+        employeeName VARCHAR(255) NOT NULL,
+        employeeStudentId VARCHAR(20) UNIQUE NOT NULL,
+        employeeEmail VARCHAR(255) UNIQUE NOT NULL,
+        country VARCHAR(100) NOT NULL,
+        employeeHomeAddress VARCHAR(255) NOT NULL,
+        employeeGender VARCHAR(20) NOT NULL,
+        employeeJobTitle VARCHAR(255) NOT NULL,
+        employeeWorkStatus VARCHAR(50) NOT NULL,
+        employeeTertiaryCompleted VARCHAR(255) NOT NULL,
+        employeeNationalId VARCHAR(50) UNIQUE NOT NULL,
+        employeePhoneNumber VARCHAR(20) NOT NULL,
+        employeeProfilePicture VARCHAR(255) NOT NULL
+    )";
+    
+    if ($connection->query($create_employee_table_query) === TRUE) {
+        // echo "Table 'employees' created successfully!";
+    } else {
+        // echo "Error creating table: " . $conn->error;
+    }
+
 }
 catch (Exception $e){
 
