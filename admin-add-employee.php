@@ -128,8 +128,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["employeeProfilePictu
                 $employeeId = substr($employeeJobTitle, 0, 3) . sprintf('%03d', $lastId);
 
                 // Generate a 12-character password
-                $employeePassword = password_hash(generatePassword(), PASSWORD_BCRYPT);
-                echo generatePassword();
+                $generatedPassword = generatePassword();
+                $employeePassword = password_hash($generatedPassword, PASSWORD_BCRYPT);
+              
+                
+                echo $generatedPassword;
               }
 
             }
@@ -286,7 +289,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["employeeProfilePictu
                 </div>
                 <select class="form-control" name="employeeJobTitle" required>
                   <option value="" disabled selected>Select your Job Title</option>
-                  <option value="Doctors">Doctors</option>
+                  <option value="Doctor">Doctors</option>
                   <option value="Nurse">Nurse</option>
                   <option value="Pharmacist">Pharmacist</option>
                   <option value="Laboratorist">Laboratorist</option>

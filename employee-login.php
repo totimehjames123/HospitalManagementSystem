@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 session_start();
 include 'connect.php';
 
@@ -8,22 +12,59 @@ try {
         // Retrieve the submitted form data and sanitize inputs
         $employeeId = trim($_POST["employeeId"]);
         $employeePassword = $_POST["employeePassword"];
+        echo $employeeId . $employeePassword;
 
         // Check if the employeeId is not empty
         if (!empty($employeeId)) {
             // Prepare the SQL query to check if the employee exists in the database
-            $sql = "SELECT employeePassword FROM employees WHERE employeeId = '$employeeId'";
+            $sql = "SELECT * FROM employees WHERE employeeId = '$employeeId'";
 
             // Execute the query
             $result = $connection->query($sql);
 
             // Check if there is a matching row
-            if ($result->num_rows == 1) {
+            if ($result->num_rows > 0) {
                 $row = $result->fetch_assoc();
                 $storedPasswordHash = $row["employeePassword"];
 
                 // Use password_verify to check if the entered password matches the hashed password
                 if (password_verify($employeePassword, $storedPasswordHash)) {
+
+                  $employeeJobTitle = $row["employeeJobTitle"];
+                    
+
+                  switch ($employeeJobTitle) {
+                    case 'Doctor':
+                      header("Location: doctor.php");
+                      break;
+                    
+                    case 'Nurse':
+                      header("Location: nurse.php");                    
+                      break;
+
+                    case 'Pharmacist':
+                      header("Location: pharmacist.php");
+                      break;
+
+                    case 'Laboratorist':
+                      header("Location: laboratorist.php");                     
+                      break;
+                    
+                    case 'Accountant':
+                      header("Location: accountant.php");
+                      break;
+                     
+                    default:
+                      header("Location: login.php");
+                      
+                      break;
+                  }
+
+                  $_SESSION["employeeId"] = $employeeId;
+                  $_SESSION["employeeName"] = $row["employeeName"];
+                  $_SESSION["employeeEmail"] = $row["employeeEmail"];
+                
+
                     echo "Login successful! Welcome back, " . $employeeId . "!";
                 } else {
                     // Login failed, incorrect credentials

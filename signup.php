@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     else{
       if (trim($username) == ""){
-        $errorMessage = "no username";
+        $errorMessage = "no username"; 
       }
       else{
         try{
