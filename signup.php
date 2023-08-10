@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     else{
       if (trim($username) == ""){
-        $errorMessage = "no username"; 
+        $errorMessage = "no username";
       }
       else{
         try{
@@ -158,20 +158,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       cursor: pointer;
     }
 
-    /* Add hover effect to the custom file input button (optional) */
-    .file-input-label:hover {
-      /* background-image: linear-gradient(to right, black, #8b5cf6); */
-      background: black;
-      color: white;
-    }
+   
   </style>
 </head>
 
 <body>
-  <div class="centered-form bg-primary">
-    <div class="card p-2" style="border-radius: 50px;">
+  <div class="centered-form ">
+    <div class="card p-2 bg-primary" style="border-radius: 50px;">
       <div class="card-body">
-        <h4 class="card-title">Sign Up</h4>
+        <h4 class="card-title text-white">Sign Up</h4>
         <form id="signup-form" enctype="multipart/form-data" action="signup.php" method="post">
 
           <div>
@@ -185,7 +180,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-user"></i></span>
+                <span class="input-group-text bg-warning"><i class="fas fa-user"></i></span>
               </div>
               <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
             </div>
@@ -202,7 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
+                <span class="input-group-text bg-warning"><i class="fas fa-envelope"></i></span>
               </div>
               <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
             </div>
@@ -211,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+                <span class="input-group-text bg-warning"><i class="fas fa-lock"></i></span>
               </div>
               <select class="form-control" id="gender" name="gender" required>
                 <option value="" disabled selected>Select your gender</option>
@@ -225,7 +220,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <div class="form-group">
             <div class="input-group">
               <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
+                <span class="input-group-text bg-warning"><i class="fas fa-envelope"></i></span>
               </div>
               <select class="form-control" id="country" name="country" required>
                 <option value="" disabled selected>Select your Country</option>
@@ -246,7 +241,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           </div>
 
           <div class="form-group">
-            <label for="profile-image" class="file-input-label w-100 border">
+            <label for="profile-image" class="file-input-label w-100 border bg-white">
               <i class="fas fa-image mr-3"></i> Add a profile picture
               <input type="file" class="form-control file-input" id="profile-image" name="profilePicture" accept="image/*">
             </label>
@@ -256,9 +251,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <input type="hidden" name="defaultProfilePicture" value="user.png">
           
           <div class="text-center">
-            <button style="border-radius: 25px; height: 45px;" name="submit" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Next</button>
+            <button style="border-radius: 25px; height: 45px;" name="submit" type="submit" class="btn bg-warning  w-25">Next</button>
           </div>
-          <p class="mt-3 text-center">Already have an account? <a href="login.php">Login here</a></p>
+          <p class="mt-3 text-center text-white">Already have an account? <a href="login.php" class="text-warning">Login here</a></p>
         </form>
       </div>
     </div>

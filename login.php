@@ -82,13 +82,13 @@ catch(Exception $e){
   </style>
 </head>
 <body>
-  <div class="centered-form bg-primary ">
-    <div class="card border-none" style="border-radius: 50px;">
-      <div class="card-body">
+  <div class="centered-form  ">
+    <div class="card border-none bg-primary" style="border-radius: 50px;">
+      <div class="card-body ">
         <div class="text-center">
           <img src="logo.png" alt="lgog" width="80" height="80" class="pb-2">
         </div>
-        <h4 class="card-title">Login</h4>
+        <h4 class="card-title text-white">Login</h4>
         <form action="login.php" method="POST">
           <small class="text-danger">
             <?php echo $errorMessage;?>
@@ -96,7 +96,7 @@ catch(Exception $e){
           <div class="form-group">
             <div class="input-group" style="height: 45px;">
               <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-envelope"></i></span>
+                <span class="input-group-text bg-warning"><i class="fas fa-envelope"></i></span>
               </div>
               <input style="height: 45px;" type="email" class="form-control btn-focus" id="email" name="email" placeholder="Enter your email" required>
             </div>
@@ -104,17 +104,17 @@ catch(Exception $e){
           <div class="form-group">
             <div class="input-group" style="height: 45px;">
               <div class="input-group-prepend">
-                <span class="input-group-text btn-gradient-blue-violet"><i class="fas fa-lock"></i></span>
+                <span class="input-group-text bg-warning"><i class="fas fa-lock"></i></span>
               </div>
               <input style="height: 45px;" type="password" class="form-control btn-focus" id="password" name="password" placeholder="Enter your password" required>
             </div>
           </div>
           <div class="text-center">
-            <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-gradient-blue-violet text-white  w-25">Login</button>
+            <button style="border-radius: 25px; height: 45px;" type="submit" class="btn btn-warning text-white  w-25">Login</button>
           </div>
         </form>
-        <p class="mt-3 text-center"><a href="forget-password.php">Forgot Password?</a></p>
-        <p class="mt-3 text-center">Don't have an account? <a href="signup.php">Sign up here</a></p>
+        <p class="mt-3 text-center text-white"><a href="forget-password.php" class="text-warning">Forgot Password?</a></p>
+        <p class="mt-3 text-center text-white">Don't have an account? <a href="signup.php" class="text-warning">Sign up here</a></p>
       </div>
     </div>
   </div>
