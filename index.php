@@ -1,3 +1,23 @@
+<?php
+
+$isPatient = "";
+if(isset($_SESSION['email'])) {
+  $email = $_SESSION['email'];
+
+  $sql = "SELECT * FROM patients WHERE patientEmail='$email'";
+  $result = $connection->query($sql);
+
+  if ($result->num_rows > 0) {
+      $isPatient = "Patient";
+  } else {
+      $isPatient = "User";
+  }
+} else {
+    $isPatient = "User";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -127,14 +147,17 @@
             <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="user-register-as-patient.php">Register as Patient</a>
           </li>
-          <!-- Add more links as needed -->
         </ul>
 
         <!-- Button on the right -->
         <div class="ml-auto">
-          <a href="#" class="btn bg-dark text-warning pl-4 pr-4" style="border-radius: 20px;">Premium</a>
+          <?php
+            echo $isPatient == "Patient" ? 
+            '<a href="user-register-as-patient.php" class="btn bg-dark text-warning pl-4 pr-4" style="border-radius: 20px;">Register as Patient</a>' : 
+            '<a href="employee-login.php" class="btn bg-dark text-warning pl-4 pr-4" style="border-radius: 20px;">Employee Login</a>';
+          ?>
         </div>
       </div>
     </div>    
@@ -155,8 +178,6 @@
           </span>
         </h1>
 
-
-
         <!-- Buttons -->
         <div class="mt-4">
           <a href="signup.php" class="btn btn-warning mr-2 pl-4 pr-4 p-2 font-weight-bold" style="border-radius: 20px;">Get Started</a>
@@ -172,7 +193,6 @@
 
   <!-- Services -->
   <div class="services">
-    some services
   </div>
 
   <!-- Add the Bootstrap JS and Popper.js scripts (optional, but may be required for some Bootstrap components) -->

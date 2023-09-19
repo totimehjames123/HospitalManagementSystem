@@ -21,11 +21,20 @@ try{
         // Verify the entered password against the stored hashed password
         if (password_verify($password, $hashedPassword)) {
             // Password is correct
-            $_SESSION["email"] = $email;
-            header("Location: index.php");
+            $_SESSION["email"] = $email;            
+
+            $query1 = "SELECT * FROM patients WHERE patientEmail = '$email'";
+
+            $result1 = mysqli_query($connection, $query1);
+
+            if (mysqli_num_rows($result) > 0){
+                header("Location: patient-module.php");
+              
+            }
+
         } else {
             // Password is incorrect
-            $errorMessage = "Invalid email or password";
+            $errorMessage = "";
         }
     } else {
         // No user found with the entered email

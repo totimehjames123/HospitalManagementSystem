@@ -11,11 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
 
   <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Doctor Module</title>
 
     <style>
         .no-outline:focus{
             outline: none!important;
+        }
+        
+        *::-webkit-scrollbar{
+            background-color: red;
         }
     </style>
 </head>
@@ -66,11 +70,12 @@
                         </div>
                         <div style="width: 90%">
                             <ul class="" style="width: 100%; height:60vh;">
-                                <li class="mb-1 mt-2" style="list-style: none;"><a href="" class="text-white pt-2 pb-2 pl-3 btn-block bg-primary" style="border-radius: 6px; text-decoration: none;" ><span class="fa fa-home pr-2"></span>Dashboard</a></li>
-                                <li class="mb-1 mt-2" style="list-style: none;"><a href="" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2" style="color: purple;"></span>Schedule</a></li>
-                                <li class="mb-1 mt-2" style="list-style: none;"><a href="" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2" style="color: pink;"></span>Schedule</a></li>
-                                <li class="mb-1 mt-2" style="list-style: none;"><a href="" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2 text-success" ></span>Schedule</a></li>
-                                <li class="mb-1 mt-2" style="list-style: none;"><a href="" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2 text-warning" ></span>Schedule</a></li>
+                                <li class="mb-1 mt-2" style="list-style: none;"><a href="doctor-module.php" class="text-white pt-2 pb-2 pl-3 btn-block bg-primary" style="border-radius: 6px; text-decoration: none;" ><span class="fa fa-home pr-2"></span>Dashboard</a></li>
+                                <li class="mb-1 mt-2" style="list-style: none;"><a href="doctor-appointment.php" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2" style="color: purple;"></span>Appointment</a></li>
+                                <li class="mb-1 mt-2" style="list-style: none;"><a href="doctor-medication.php" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2" style="color: pink;"></span>Medications</a></li>
+                                <li class="mb-1 mt-2" style="list-style: none;"><a href="doctor-operations.php" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2 text-success" ></span>Operations</a></li>
+                                <li class="mb-1 mt-2" style="list-style: none;"><a href="doctor-laboratory.php" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2 text-warning" ></span>Laboratory Services</a></li>
+                                <li class="mb-1 mt-2" style="list-style: none;"><a href="doctor-profile.php" class="text-dark pt-2 pb-2 pl-3 btn-block bg-light" style="border-radius: 6px; text-decoration: none;"><span class="fa fa-calendar pr-2 text-warning" ></span>My Profile</a></li>
 
                             </ul>
                         </div>

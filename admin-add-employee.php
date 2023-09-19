@@ -67,11 +67,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["employeeProfilePictu
             $employeeJobTitle = sanitize_input($_POST["employeeJobTitle"]);
             $employeeNationalId = sanitize_input($_POST["employeeNationalId"]);
 
-            if (empty($employeeStudentId) || empty($employeeEmail) || empty($employeeJobTitle) || empty($employeeNationalId)) {
+            if (empty($employeeStudentId) || empty($employeeEmail) || empty($employeeNationalId)) {
               echo "Error: All fields are required. Please fill in all the details.";
             } else {
               // Check if any of the fields already exists in the table
-              $sql = "SELECT * FROM employees WHERE employeeStudentId = '$employeeStudentId' OR employeeEmail = '$employeeEmail' OR employeeJobTitle = '$employeeJobTitle' OR employeeNationalId = '$employeeNationalId'";
+              $sql = "SELECT * FROM employees WHERE employeeStudentId = '$employeeStudentId' OR employeeEmail = '$employeeEmail' OR employeeNationalId = '$employeeNationalId'";
               $result = $connection->query($sql);
           
               if ($result->num_rows > 0) {
@@ -84,9 +84,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["employeeProfilePictu
                       if ($row['employeeEmail'] === $employeeEmail) {
                           $existingFields[] = "Employee Email";
                       }
-                      if ($row['employeeJobTitle'] === $employeeJobTitle) {
-                          $existingFields[] = "Employee Job Title";
-                      }
+                      
                       if ($row['employeeNationalId'] === $employeeNationalId) {
                           $existingFields[] = "Employee National ID";
                       }
@@ -159,7 +157,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["employeeProfilePictu
             echo "Error: Failed to move uploaded file.";
         }
     } else {
-        echo "Error: No file was uploaded.";
+        // echo "Error: No file was uploaded.";
     }
 
     // Close the database connection
@@ -229,7 +227,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_FILES["employeeProfilePictu
 </head>
 
 <body>
-  <div class="centered-form bg-white">
+  <div class="centered-form bg-light">
     <div class="card p-3 border-0 bg-primary text-white">
       <div class="card-body">
         <h4 class="card-title">Add Employee</h4>
